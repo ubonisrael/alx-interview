@@ -18,7 +18,7 @@ def pascal_triangle(n):
     """ generates the coefficients of an nth Pascal's Triangle"""
     triangle = []
 
-    if n is not int or n <= 0:
+    if type(n) is not int or n <= 0:
         return triangle
 
     for x in range(n):
