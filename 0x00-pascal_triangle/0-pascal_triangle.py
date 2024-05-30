@@ -24,7 +24,7 @@ def pascal_triangle(n):
     for x in range(n):
         row = []
         for y in range(x + 1):
-            row.append(int(factorial(x) / (factorial(y) * factorial(x - y))))
+            row.append(factorial(x) // (factorial(y) * factorial(x - y)))
         triangle.append(row)
 
     return triangle
