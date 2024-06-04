@@ -4,6 +4,8 @@
 
 def canUnlockAll(boxes):
     """determines if all the boxes can be opened"""
+    if type(boxes) is not list or len(boxes) == 0:
+        return False
     return validate_array(check_boxes(boxes, [0 for _ in boxes], 0))
 
 
