@@ -29,7 +29,6 @@ def check_boxes(boxes, array, index):
         if x >= len(boxes) or array[x] == 1:
             continue
         array = check_boxes(boxes, array, x)
-        print(array)
         if validate_array(array):
             return array
     return array
