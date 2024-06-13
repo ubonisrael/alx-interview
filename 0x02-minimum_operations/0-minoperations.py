@@ -6,8 +6,6 @@ a number n, write a method that calculates the fewest number of operations
 needed to result in exactly n H characters in the file.
 """
 from typing import List
-from functools import reduce
-
 
 
 def isPrimeNumber(n: int) -> bool:
@@ -23,17 +21,17 @@ def isPrimeNumber(n: int) -> bool:
     return True
 
 
-def lowestCommonMultiples(n: int, x: int = 2, array: List[int] = []) -> List[int]:
+def LCM(n: int, x: int = 2, array: List[int] = []) -> List[int]:
     """
     returns an array of the lowest common multiples of a number
     """
     if n == 1:
         return array
-    
+
     while x <= n:
         if n % x == 0:
             array.append(x)
-            return lowestCommonMultiples(n / x, x, array)
+            return LCM(n / x, x, array)
         x += 1
     return array
 
@@ -45,12 +43,12 @@ def minOperations(n: int) -> int:
     """
     if n <= 1:
         return 0
-    
+
     # check if n is a prime number
     if isPrimeNumber(n):
         return n
-    
-    # get the lowest common multiples of the number
-    factors = lowestCommonMultiples(n, 2, [])
 
-    return sum(factors)
+    # get the lowest common multiples of the number
+    # sum them up and return
+    # Note, all LCMs will be prime numbers
+    return sum(LCM(n, 2, []))
