@@ -30,15 +30,17 @@ def validUTF8(data):
         if bin[0] == 0:
             continued_bytes = 0
             continue
-        if bin[1] == 1:
-            if bin[2] == 1 and bin[3] == 0:
+        if bin[0] == 1:
+            if bin[1] == 1 and bin[2] == 0:
                 continued_bytes = 1
                 continue
-            if bin[2] == 1 and bin[3] == 1 and bin[4] == 0:
+            if bin[1] == 1 and bin[2] == 1 and bin[3] == 0:
                 continued_bytes = 2
                 continue
-            if bin[2] == 1 and bin[3] == 1 and bin[4] == 1 and bin[5] == 0:
+            if bin[1] == 1 and bin[2] == 1 and bin[3] == 1 and bin[4] == 0:
                 continued_bytes = 3
                 continue
             return False
+    if continued_bytes > 0:
+        return False
     return True
