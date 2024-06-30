@@ -18,10 +18,8 @@ def validUTF8(data):
     """Checks if the given data set is a valid UTF-8 encoding"""
     # set a variable that holds the number of continued bytes
     continued_bytes = 0
-    if type(data) is not list or len(data) == 0:
-        return False
     for dat in data:
-        if type(dat) is not int:
+        if type(dat) is not int or dat < 0:
             return False
         bin = to_bin(dat)  # convert number to binary
         if continued_bytes > 0:  # check if byte is a continued byte
