@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/python3
 """Contains the to_bin and validUTF8 functions"""
 
 
