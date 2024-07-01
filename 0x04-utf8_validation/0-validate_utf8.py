@@ -11,6 +11,8 @@ def to_bin(n):
     while len(arr) < 8:
         arr.append(0)
     arr = list(reversed(arr))
+    if len(arr) > 8:
+        del arr[0]
     return arr
 
 
@@ -22,6 +24,7 @@ def validUTF8(data):
         if type(dat) is not int or dat < 0:
             return False
         bin = to_bin(dat)  # convert number to binary
+        print(dat, bin, continued_bytes)
         if continued_bytes > 0:  # check if byte is a continued byte
             if bin[0] == 1 and bin[1] == 0:
                 continued_bytes -= 1
