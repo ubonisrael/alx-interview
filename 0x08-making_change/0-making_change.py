@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """contains the making_change function"""
 
-
+# initial solution, the correct one but slow
 # def makeChange(coins, total):
 #     """"""
 #     if total <= 0:
@@ -11,8 +11,8 @@
 
 
 # def makeChangeHelper(coins, current_total):
-#     """"""
-#     res, mod = getDividendAndMod(current_total, coins[0])
+#     """helper function for makeChange"""
+#     res, mod = getQuotientAndMod(current_total, coins[0])
 
 #     if mod == 0:
 #         return res
@@ -33,28 +33,30 @@
 #     return min(arr) if len(arr) > 0 else -1
 
 
-# def getDividendAndMod(quotient, divisor):
-#     """"""
-#     return (quotient // divisor, quotient % divisor)
+def getQuotientAndMod(dividend, divisor):
+    """returns the quotient and modulus of a division operation"""
+    return (dividend // divisor, dividend % divisor)
 
 
+# fast solution but inaccurate
 def makeChange(coins, total):
     """Determines the fewest number of coins needed to meet a given
     amount total when given a pile of coins of different values.
     """
+    count = 0
     if total <= 0:
-        return 0
-    rem = total
-    coins_count = 0
-    coin_idx = 0
-    sorted_coins = sorted(coins, reverse=True)
-    n = len(coins)
-    while rem > 0:
-        if coin_idx >= n:
-            return -1
-        if rem - sorted_coins[coin_idx] >= 0:
-            rem -= sorted_coins[coin_idx]
-            coins_count += 1
-        else:
-            coin_idx += 1
-    return coins_count
+        return count
+    coins.sort(reverse=True)
+    index = 0
+    res, rem = getQuotientAndMod(total, coins[index])
+    count += res
+    if rem == 0:
+        return count
+    index += 1
+    while index < len(coins):
+        res, rem = getQuotientAndMod(rem, coins[index])
+        count += res
+        index += 1
+        if rem == 0:
+            break
+    return count if rem == 0 else -1
