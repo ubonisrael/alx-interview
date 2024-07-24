@@ -48,15 +48,14 @@ def makeChange(coins, total):
         return count
     coins.sort(reverse=True)
     index = 0
-    res, rem = getQuotientAndMod(total, coins[index])
-    count += res
-    if rem == 0:
-        return count
-    index += 1
-    while index < len(coins):
-        res, rem = getQuotientAndMod(rem, coins[index])
+    coins_length = len(coins)
+    remainder = total
+    while remainder > 0:
+        if index >= coins_length:
+            return -1
+        res, remainder = getQuotientAndMod(remainder, coins[index])
         count += res
-        index += 1
-        if rem == 0:
+        if remainder == 0:
             break
-    return count if rem == 0 else -1
+        index += 1
+    return count
