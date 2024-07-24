@@ -4,6 +4,8 @@
 
 def makeChange(coins, total):
     """"""
+    if total <= 0:
+        return 0
     coins.sort(reverse=True)
     return makeChangeHelper(coins, total)
 
