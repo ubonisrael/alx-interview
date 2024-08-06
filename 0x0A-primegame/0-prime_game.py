@@ -7,6 +7,9 @@ def isWinner(x, nums):
     # initialize win count
     ben = 0
     maria = 0
+
+    if x < 1 or not nums:
+        return None
     rounds = x
 
     for n in nums:
@@ -30,5 +33,5 @@ def isWinner(x, nums):
             ben += 1
         else:
             maria += 1
-    
+
     return None if ben == maria else ("Ben" if ben > maria else "Maria")
